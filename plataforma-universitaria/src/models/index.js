@@ -1,6 +1,6 @@
 // models/index.js
 const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = new Sequelize("basedados", "root", "", {
+const sequelize = new Sequelize("plataforma_teste", "root", "123456789", {
   host: "localhost",
   dialect: "mysql"
 });
@@ -11,11 +11,13 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 // Importar modelos
-db.HistoricoReserva = require("./historicoReserva")(sequelize, DataTypes);
 db.Utilizador = require("./utilizador")(sequelize, DataTypes);
+db.Alojamento = require("./Alojamento")(sequelize, DataTypes); // este estava a faltar!
 db.Evento = require("./Evento")(sequelize, DataTypes);
 db.Notificacao = require("./Notificacao")(sequelize, DataTypes);
 db.ParticipacaoEvento = require("./participacaoEvento")(sequelize, DataTypes);
+db.HistoricoReserva = require("./historicoReserva")(sequelize, DataTypes);
+
 
 // Aplicar associações
 Object.keys(db).forEach((modelName) => {

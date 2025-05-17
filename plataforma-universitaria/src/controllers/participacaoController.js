@@ -1,4 +1,3 @@
-// controllers/participacaoController.js
 const { ParticipacaoEvento, Evento, Utilizador } = require("../models");
 
 exports.registarParticipacao = async (req, res) => {

@@ -2,8 +2,8 @@ const express = require("express");
 const routerParticipacao = express.Router();
 const participacaoController = require("../controllers/participacaoController");
 
-routerParticipacao.post("/participacoes", participacaoController.inscreverNoEvento);
+routerParticipacao.post("/participacoes", participacaoController.registarParticipacao);
 routerParticipacao.get("/participacoes/utilizador/:utilizadorId", participacaoController.listarParticipacoesPorUtilizador);
-routerParticipacao.delete("/participacoes/:id", participacaoController.cancelarParticipacao);
+routerParticipacao.delete("/participacoes", participacaoController.removerParticipacao);
 
 module.exports = routerParticipacao;
