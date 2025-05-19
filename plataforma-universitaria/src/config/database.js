@@ -1,7 +1,7 @@
 const { Sequelize } = require("sequelize");
 
 const sequelize = new Sequelize(
-  "plataforma_teste",        // Substitua pelo nome do banco de dados
+  "plataforma_alojamentos",        // Substitua pelo nome do banco de dados
   "root",                 // Substitua pelo usuário do banco de dados
   "123456789",            // Substitua pela senha do usuário
   {

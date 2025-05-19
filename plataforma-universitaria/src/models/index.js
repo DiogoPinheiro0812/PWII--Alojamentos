@@ -1,6 +1,6 @@
 // models/index.js
 const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = new Sequelize("plataforma_teste", "root", "123456789", {
+const sequelize = new Sequelize("plataforma_alojamentos", "root", "123456789", {
   host: "localhost",
   dialect: "mysql"
 });

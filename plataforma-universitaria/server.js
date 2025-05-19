@@ -1,11 +1,11 @@
 const express = require('express');
 const app = express();
-const alojamentoRoutes = require("./src/routes/alojamentoRoutes.js");
 const { sequelize } = require("./src/models");
+const alojamentoRoutes = require("./src/routes/alojamentoRoutes.js");
 const reservaRoutes = require("./src/routes/reservaRoutes");
 const routerParticipacao = require("./src/routes/participacaoRoutes");
 const notificacaoRoutes = require("./src/routes/notificacaoRoutes");
-
+const { Utilizador } = require("./src/models");
 
 
 
