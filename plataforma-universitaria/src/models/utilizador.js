@@ -1,10 +1,12 @@
-// models/utilizador.js
+const { v4: uuidv4 } = require('uuid');
+
 module.exports = (sequelize, DataTypes) => {
   const Utilizador = sequelize.define("Utilizador", {
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true
+      type: DataTypes.STRING(36),
+      allowNull: false,
+      primaryKey: true,
+      defaultValue: uuidv4
     },
     nome: {
       type: DataTypes.STRING,
@@ -19,22 +21,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    tipo: {
+    perfil: {
       type: DataTypes.ENUM("estudante", "facilitador", "admin"),
       allowNull: false
     }
+  }, {
+    tableName: "utilizadores",
+    freezeTableName: true,
+    timestamps: false
   });
-
-  Utilizador.associate = (models) => {
-    Utilizador.belongsToMany(models.Evento, {
-      through: models.ParticipacaoEvento,
-      foreignKey: "utilizadorId"
-    });
-
-    Utilizador.hasMany(models.Notificacao, {
-      foreignKey: "utilizadorId"
-    });
-  };
 
   return Utilizador;
 };

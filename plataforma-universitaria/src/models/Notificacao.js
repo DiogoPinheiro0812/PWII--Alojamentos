@@ -1,13 +1,13 @@
 // models/notificacao.js
+
 module.exports = (sequelize, DataTypes) => {
   const Notificacao = sequelize.define("Notificacao", {
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
+      type: DataTypes.STRING(36),
       primaryKey: true
     },
     utilizadorId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(36),
       allowNull: false
     },
     assunto: {
@@ -22,10 +22,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: false
     },
+    data: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW
+    },
+    
     lida: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     }
+  }, {
+    tableName: 'notificacoes',
+    freezeTableName: true,
+    timestamps: false,
   });
 
   Notificacao.associate = (models) => {

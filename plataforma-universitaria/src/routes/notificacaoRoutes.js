@@ -1,9 +1,9 @@
-// routes/notificacaoRoutes.js
 const express = require("express");
-const routerNotificacao = express.Router();
+const router = express.Router();
 const notificacaoController = require("../controllers/notificacaoController");
 
-routerNotificacao.get("/notificacoes/:utilizadorId", notificacaoController.listarNotificacoesPorUtilizador);
-routerNotificacao.patch("/notificacoes/:id", notificacaoController.marcarNotificacaoComoLida);
+// NÃO repetir "notificacoes" porque já vem de /api/notificacoes
+router.get("/:utilizadorId", notificacaoController.listarNotificacoesPorUtilizador);
+router.patch("/:id", notificacaoController.marcarNotificacaoComoLida);
 
-module.exports = routerNotificacao;
+module.exports = router;

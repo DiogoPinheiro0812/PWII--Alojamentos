@@ -24,7 +24,7 @@ exports.listarHistoricoPorUtilizador = async (req, res) => {
 
     const historico = await HistoricoReserva.findAll({
       where: { utilizadorId },
-      order: [['dataReserva', 'DESC']]
+      order: [["dataReserva", "DESC"]]
     });
 
     res.status(200).json(historico);

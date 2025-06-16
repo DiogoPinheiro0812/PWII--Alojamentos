@@ -6,7 +6,8 @@ exports.listarNotificacoesPorUtilizador = async (req, res) => {
     const { utilizadorId } = req.params;
     const notificacoes = await Notificacao.findAll({
       where: { utilizadorId },
-      order: [['createdAt', 'DESC']]
+      order: [['data', 'DESC']]
+
     });
     res.status(200).json(notificacoes);
   } catch (error) {

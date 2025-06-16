@@ -1,30 +1,37 @@
 module.exports = (sequelize, DataTypes) => {
   const Avaliacao = sequelize.define("Avaliacao", {
     id: {
-      type: DataTypes.CHAR(36),
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true
     },
     alojamentoId: {
-      type: DataTypes.CHAR(36),
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     estudanteId: {
-      type: DataTypes.CHAR(36),
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     pontuacao: {
       type: DataTypes.INTEGER,
-      validate: {
-        min: 1,
-        max: 5
-      }
+      allowNull: false
     },
-    comentario: DataTypes.TEXT
+    comentario: {
+      type: DataTypes.TEXT
+    }
+  }, {
+    tableName: "avaliacoes",
+    freezeTableName: true,
+    timestamps: false
   });
 
+  // ✅ Aqui define a associação
   Avaliacao.associate = (models) => {
-    Avaliacao.belongsTo(models.Utilizador, { foreignKey: "estudanteId", as: "estudante" });
-    Avaliacao.belongsTo(models.Alojamento, { foreignKey: "alojamentoId" });
+    Avaliacao.belongsTo(models.Alojamento, {
+      foreignKey: "alojamentoId",
+      as: "alojamento"
+    });
   };
 
   return Avaliacao;

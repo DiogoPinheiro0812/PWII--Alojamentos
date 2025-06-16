@@ -1,6 +1,4 @@
-
-// controllers/utilizadorController.js
-const { Utilizador } = require("../models");
+const { Utilizador, Avaliacao, Reserva, HistoricoReserva, Notificacao } = require("../models");
 
 exports.criarUtilizador = async (req, res) => {
   try {
@@ -53,10 +51,19 @@ exports.atualizarUtilizador = async (req, res) => {
 exports.removerUtilizador = async (req, res) => {
   try {
     const { id } = req.params;
+
+    // ❗ Eliminar dependências primeiro
+    await Avaliacao.destroy({ where: { estudanteId: id } });
+    await Reserva.destroy({ where: { utilizadorId: id } });
+    await HistoricoReserva.destroy({ where: { utilizadorId: id } });
+    await Notificacao.destroy({ where: { utilizadorId: id } });
+
     const apagado = await Utilizador.destroy({ where: { id } });
+
     if (!apagado) {
       return res.status(404).json({ mensagem: "Utilizador não encontrado" });
     }
+
     res.status(200).json({ mensagem: "Utilizador removido com sucesso" });
   } catch (error) {
     console.error("Erro ao remover utilizador:", error);

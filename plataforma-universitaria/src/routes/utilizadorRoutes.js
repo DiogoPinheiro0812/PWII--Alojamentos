@@ -1,12 +1,12 @@
-// routes/utilizadorRoutes.js
 const express = require("express");
-const routerUtilizador = express.Router();
+const router = express.Router();
 const utilizadorController = require("../controllers/utilizadorController");
 
-routerUtilizador.post("/utilizadores", utilizadorController.criarUtilizador);
-routerUtilizador.get("/utilizadores", utilizadorController.listarUtilizadores);
-routerUtilizador.get("/utilizadores/:id", utilizadorController.obterUtilizadorPorId);
-routerUtilizador.put("/utilizadores/:id", utilizadorController.atualizarUtilizador);
-routerUtilizador.delete("/utilizadores/:id", utilizadorController.removerUtilizador);
+// Caminhos relativos ao prefixo /api/utilizadores
+router.post("/", utilizadorController.criarUtilizador);
+router.get("/", utilizadorController.listarUtilizadores);
+router.get("/:id", utilizadorController.obterUtilizadorPorId);
+router.put("/:id", utilizadorController.atualizarUtilizador);
+router.delete("/:id", utilizadorController.removerUtilizador);
 
-module.exports = routerUtilizador;
+module.exports = router;

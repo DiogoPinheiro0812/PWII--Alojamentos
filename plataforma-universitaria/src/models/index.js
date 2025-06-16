@@ -15,11 +15,16 @@ db.Utilizador = require("./utilizador")(sequelize, DataTypes);
 db.Alojamento = require("./Alojamento")(sequelize, DataTypes); // este estava a faltar!
 db.Evento = require("./Evento")(sequelize, DataTypes);
 db.Notificacao = require("./Notificacao")(sequelize, DataTypes);
-db.ParticipacaoEvento = require("./participacaoEvento")(sequelize, DataTypes);
 db.HistoricoReserva = require("./historicoReserva")(sequelize, DataTypes);
+db.Reserva = require("./Reserva")(sequelize, DataTypes);
+db.Avaliacao = require("./Avaliacao")(sequelize, DataTypes);
+
+
 
 
 // Aplicar associações
+
+
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
     db[modelName].associate(db);

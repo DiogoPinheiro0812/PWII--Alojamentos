@@ -3,10 +3,10 @@ const express = require("express");
 const routerEvento = express.Router();
 const eventoController = require("../controllers/eventoController");
 
-routerEvento.post("/eventos", eventoController.criarEvento);
-routerEvento.get("/eventos", eventoController.listarEventos);
-routerEvento.get("/eventos/:id", eventoController.obterEventoPorId);
-routerEvento.put("/eventos/:id", eventoController.atualizarEvento);
-routerEvento.delete("/eventos/:id", eventoController.removerEvento);
+routerEvento.post("/", eventoController.criarEvento);
+routerEvento.get("/", eventoController.listarEventos);
+routerEvento.get("/:id", eventoController.obterEventoPorId);
+routerEvento.put("/:id", eventoController.atualizarEvento);
+routerEvento.delete("/:id", eventoController.removerEvento);
 
 module.exports = routerEvento;

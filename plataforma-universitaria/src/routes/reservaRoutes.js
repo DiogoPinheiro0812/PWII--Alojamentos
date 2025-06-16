@@ -3,8 +3,10 @@ const express = require("express");
 const routerReserva = express.Router();
 const reservaController = require("../controllers/reservaController");
 
-routerReserva.post("/reservas", reservaController.criarReserva);
-routerReserva.get("/reservas/utilizador/:utilizadorId", reservaController.listarReservasPorUtilizador);
-routerReserva.delete("/reservas/:id", reservaController.cancelarReserva);
+routerReserva.post("/", reservaController.criarReserva);
+routerReserva.get("/", reservaController.listarTodasReservas); 
+routerReserva.get("/utilizador/:utilizadorId", reservaController.listarReservasPorUtilizador);
+routerReserva.put("/:id", reservaController.atualizarReserva); // 👈 nova rota
+routerReserva.delete("/:id", reservaController.cancelarReserva);
 
 module.exports = routerReserva;

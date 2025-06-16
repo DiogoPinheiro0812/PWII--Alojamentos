@@ -1,9 +1,8 @@
-// models/evento.js
 module.exports = (sequelize, DataTypes) => {
   const Evento = sequelize.define("Evento", {
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,  // Gera UUID automaticamente
       primaryKey: true
     },
     titulo: {
@@ -14,26 +13,27 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: false
     },
-    dataInicio: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    dataFim: {
+    data: {
       type: DataTypes.DATE,
       allowNull: false
     },
     localizacao: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    tipo: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    facilitadorId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
+  }, {
+    tableName: "eventos",
+    freezeTableName: true,
+    timestamps: false
   });
-
-  Evento.associate = (models) => {
-    Evento.belongsToMany(models.Utilizador, {
-      through: models.ParticipacaoEvento,
-      foreignKey: "eventoId"
-    });
-  };
 
   return Evento;
 };
